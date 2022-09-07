@@ -1,0 +1,24 @@
+Test-1
+
+Bruce
+Read: Bruce
+Clean: BRUCE
+Sort: BCERU
+Palindrome: URECBCERU
+Print: URECBCERU
+
+Process finished with exit code 0
+
+
+Test-2
+
+RakeshChowdary
+Read: RakeshChowdary
+Clean: RAKESHCHOWDARY
+Sort: AACDEHHKORRSWY
+Palindrome: YWSRROKHHEDCAAACDEHHKORRSWY
+Print: YWSRROKHHEDCAAACDEHHKORRSWY
+
+Process finished with exit code 0
+
+
