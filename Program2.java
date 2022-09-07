@@ -5,9 +5,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class Execute {
+class Processor {
 
-    public String ReadMethod() {
+    public void process() {
+        String input= ReadMethod();
+        String cleanedString = Clean(input);
+        String sortedString = sortString(cleanedString);
+        String palindromeString = palindrome(sortedString);
+        Print(palindromeString);
+
+    }
+    private String ReadMethod() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String inputString="";
         try {
@@ -16,11 +24,11 @@ class Execute {
         catch (IOException e) {
             System.out.println("No Input");
         }
-        System.out.println(inputString);
+        System.out.println("Read: " + inputString);
         return inputString;
     }
 
-    public String Clean(String inputString) {
+    private String Clean(String inputString) {
         StringBuilder sb = new StringBuilder("");
         for(int i=0;i<inputString.length();i++)
         {
@@ -37,11 +45,11 @@ class Execute {
             }
         }
         String outputString=sb.toString();
-        System.out.println(outputString);
+        System.out.println("Clean: " +outputString);
         return outputString;
     }
 
-    public String sortString(String inputString) {
+    private String sortString(String inputString) {
         List<Integer> list=new ArrayList<>();
         for(int i=0;i<inputString.length();i++)
         {
@@ -55,11 +63,12 @@ class Execute {
             sb.append((char)temp);
         }
         String outputString=sb.toString();
-        System.out.println(outputString);
+        System.out.println("Sort: " + outputString);
+
         return outputString;
     }
 
-    public String palindrome(String inputString) {
+    private String palindrome(String inputString) {
         StringBuilder sb = new StringBuilder();
         for(int i=inputString.length()-1;i>0;i--)
         {
@@ -67,26 +76,22 @@ class Execute {
         }
         sb.append(inputString);
         String outputString=sb.toString();
-        System.out.println(outputString);
+        System.out.println("Palindrome: " + outputString);
         return outputString;
     }
 
-    public void Print(String inputString) {
-        System.out.println(inputString);
+    private void Print(String inputString) {
+        System.out.println("Print: " +inputString);
     }
 }
 
 
-public class Processor {
+public class Program2 {
 
     public static void main(String[] args) {
 
-        Execute obj=new Execute();
-       String input= obj.ReadMethod();
-       String cleanedString = obj.Clean(input);
-       String sortedString = obj.sortString(cleanedString);
-       String palindromeString = obj.palindrome(sortedString);
-       obj.Print(palindromeString);
+        Processor obj=new Processor();
+        obj.process();
 
 
 
