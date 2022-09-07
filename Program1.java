@@ -7,13 +7,13 @@ import java.util.List;
 
 
 class Analyzer {
-    List<Double> list;
+    public List<Double> list;
 
     public Analyzer(List<Double> list) {
         this.list = list;
     }
 
-    public double Mean() {
+    private double Mean() {
         double mean = 0;
         for (int i = 0; i < list.size(); i++) {
             mean += list.get(i);
@@ -23,7 +23,7 @@ class Analyzer {
         return mean;
     }
 
-    public double Variance(Double mean) {
+    private double Variance(Double mean) { //square of each number diff with mean is summed and d
         double variance = 0;
         for (int i = 0; i < list.size(); i++) {
             variance += (list.get(i) - mean) * (list.get(i) - mean);
@@ -33,27 +33,30 @@ class Analyzer {
         return variance;
     }
 
-    public double StandardDeviation(Double variance) {
+    private double StandardDeviation(Double variance) {
+        //sqrt of variance.
         double sd = 0;
         sd = Math.sqrt(variance);
         System.out.println("StandardDeviation= " + sd);
         return sd;
     }
 
-    public double MinValue() {
-        Collections.sort(list);
+    private double MinValue() {
+        Collections.sort(list); //used collections class inbuilt sort method for sorting the list
         System.out.println("MinValue= " + list.get(0));
         return list.get(0);
     }
 
-    public double MaxValue() {
-        Collections.sort(list);
+    private double MaxValue() {
+        Collections.sort(list); //used collections class inbuilt sort method for sorting the list
         System.out.println("MaxValue= " + list.get(list.size() - 1));
         return list.get(list.size() - 1);
 
     }
 
-    public double Median() {
+    private double Median() {
+        //in case of even sized list, avg of middle two elements is taken.
+        // in odd sized list, middle element is returned
         Collections.sort(list);
         int half = list.size() / 2;
         double median = 0;
@@ -67,14 +70,17 @@ class Analyzer {
 
     }
 
-    public double Mode() { //in case of multiple modes only one of them is printed.
-        // (all integers with count 1 are also considered as modes
+    private double Mode() {
+        //in case of multiple modes, only one of them is printed.
+        // if input is all distinct integers, one of them is considered as mode.
         double mode = Count();
             System.out.print("Mode= " + mode);
         return mode;
     }
 
-    public double Count() { //if there are multiple most frequent integers with same  count only one of them is printed
+    private double Count() {
+        //if there are multiple most frequent integers with same  count
+        // only one of them is printed
         Collections.sort(list);
         double mode = list.get(0), tempMode = list.get(0);
         int count = 1, tempCount = 1;
@@ -87,11 +93,9 @@ class Analyzer {
                     count = tempCount;
                     mode = tempMode;
                 }
-
                 tempCount = 1;
                 tempMode = list.get(i);
             }
-
             if (tempCount >= count) {
                 count = tempCount;
                 mode = tempMode;
@@ -102,7 +106,7 @@ class Analyzer {
 
     }
 
-    public void analyze() {
+    public void analyze() { //all the methods are called here
         if (list.size() >= 1) {
             double mean = Mean();
             double variance = Variance(mean);
@@ -122,14 +126,14 @@ class Analyzer {
 class Reader {
 
     public List<Double> read() throws IOException {
-        boolean flag = true;
+        boolean flag = true; //used for checking the end of input
         ArrayList<Double> list = new ArrayList<>();
         while (flag) {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             try {
                 double temp = Double.parseDouble(br.readLine());
-
-                list.add(temp);
+                list.add(temp);  //after each input is added to the list
+                //current list is printed in below loop.
                 for (int i = 0; i < list.size(); i++) {
                     System.out.print(list.get(i));
                     if (list.size() - 1 != i)
@@ -139,11 +143,6 @@ class Reader {
                 }
             } catch (NumberFormatException e) {
                 flag = false;
-
-//                if (list.size() >= 1) {
-//                    Analyzer m = new Analyzer(list);
-//                    m.analyze();
-//                }
             }
         }
         return list;

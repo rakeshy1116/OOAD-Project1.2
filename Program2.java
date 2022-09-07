@@ -8,21 +8,31 @@ import java.util.List;
 class Processor {
 
     public void process() {
-        String input= ReadMethod();
-        String cleanedString = Clean(input);
-        String sortedString = sortString(cleanedString);
-        String palindromeString = palindrome(sortedString);
-        Print(palindromeString);
-
+       ReadMethod();
     }
     private String ReadMethod() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        //used flag variable to check for input. in case of input type other than string, flag is set to false
+        //and program terminates
+        // in case of empty input, End of input is printed to console and program exits
         String inputString="";
-        try {
-            inputString = br.readLine();
-        }
-        catch (IOException e) {
-            System.out.println("No Input");
+        boolean flag=true;
+        while(flag) {
+            try {
+                inputString = br.readLine();
+                if(inputString.equals(""))
+                {
+                    System.out.println("End of Input");
+                    return inputString;
+                }
+                String cleanedString = Clean(inputString);
+                String sortedString = sortString(cleanedString);
+                String palindromeString = palindrome(sortedString);
+                Print(palindromeString);
+            }
+            catch (IOException e) {
+                flag=false;
+           }
         }
         System.out.println("Read: " + inputString);
         return inputString;
@@ -50,6 +60,9 @@ class Processor {
     }
 
     private String sortString(String inputString) {
+        //converted each character to their ascii values
+        //added them to a list and sorted the number list
+        //and converted back the ascii num to character.
         List<Integer> list=new ArrayList<>();
         for(int i=0;i<inputString.length();i++)
         {
@@ -69,7 +82,8 @@ class Processor {
     }
 
     private String palindrome(String inputString) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();  //used StringBuilder to build palindrome
+        //by reversing the existing string and adding it to the front of existing string.
         for(int i=inputString.length()-1;i>0;i--)
         {
             sb.append(inputString.charAt(i));
@@ -89,11 +103,8 @@ class Processor {
 public class Program2 {
 
     public static void main(String[] args) {
-
         Processor obj=new Processor();
-        obj.process();
-
-
+        obj.process(); //all the required methods are present in process method.
 
     }
 }

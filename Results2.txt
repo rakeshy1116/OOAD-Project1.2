@@ -1,6 +1,9 @@
 Test-1
 
-Bruce
+input - Bruce
+
+Output -
+
 Read: Bruce
 Clean: BRUCE
 Sort: BCERU
@@ -12,7 +15,10 @@ Process finished with exit code 0
 
 Test-2
 
-RakeshChowdary
+input - RakeshChowdary
+
+Output -
+
 Read: RakeshChowdary
 Clean: RAKESHCHOWDARY
 Sort: AACDEHHKORRSWY
